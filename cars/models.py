@@ -25,13 +25,12 @@ class Credit(models.Model):
     model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
     complectation = models.ForeignKey(Complectation, on_delete=models.CASCADE)
     duration = models.CharField(max_length=50)
-    percent = models.PositiveIntegerField()
     first_payment = models.CharField(max_length=50)
 
 
 
 class Calculator(models.Model):
-    credit = models.ForeignKey(Credit, on_delete=models.CASCADE)
+    credit = models.ForeignKey(Credit, on_delete=models.CASCADE, related_name="calculator")
     month = models.DateField()
     payment = models.PositiveIntegerField()
     percent = models.CharField(max_length=20)
