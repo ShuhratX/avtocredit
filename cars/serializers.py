@@ -32,7 +32,7 @@ class CalculatorSerializer(serializers.ModelSerializer):
 
 
 class CreditSerializer(serializers.ModelSerializer):
-    calculator = CalculatorSerializer(required=False)    
+    calculators = CalculatorSerializer(required=False)    
     class Meta:
         model = Credit
-        fields = ("model", "complectation", "first_payment", "duration", "calculator")
+        fields = ("model", "complectation", "first_payment", "duration", "calculators")
