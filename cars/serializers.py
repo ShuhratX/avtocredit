@@ -31,15 +31,8 @@ class CalculatorSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class Credit(serializers.ModelSerializer):
+class CreditSerializer(serializers.ModelSerializer):
     calculator = CalculatorSerializer(required=False)    
     class Meta:
         model = Credit
         fields = ("model", "complectation", "first_payment", "duration", "calculator")
-
-
-class CarSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = Car
-        fields = "__all__"
