@@ -18,12 +18,12 @@ class Car(models.Model):
     transmission = models.CharField(max_length=50)
     top_speed = models.PositiveIntegerField()
 
-
 class Credit(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     duration = models.CharField(max_length=50)
     percent = models.PositiveIntegerField()
     first_payment = models.CharField(max_length=50)
+
 
 
 class Calculator(models.Model):
