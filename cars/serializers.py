@@ -6,14 +6,14 @@ class CarModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CarModel
-        fields = "___all__"
+        fields = "__all__"
 
 
 class ComplectationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Complectation
-        fields = "___all__"
+        fields = "__all__"
 
 
 class CarSerializer(serializers.ModelSerializer):
@@ -32,7 +32,7 @@ class CalculatorSerializer(serializers.ModelSerializer):
 
 
 class CreditSerializer(serializers.ModelSerializer):
-    calculators = CalculatorSerializer(required=False)    
+    calculators = CalculatorSerializer(required=False, many=True)    
     class Meta:
         model = Credit
         fields = ("model", "complectation", "first_payment", "duration", "calculators")
