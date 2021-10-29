@@ -34,7 +34,7 @@ class CalculatorSerializer(serializers.ModelSerializer):
 class CreditSerializer(serializers.ModelSerializer):
     model = CarModelSerializer(required=False, many=False)
     complectation = ComplectationSerializer(required=False, many=False)
-    calculators = CalculatorSerializer(required=False, many=True)  
+    calculator = CalculatorSerializer(required=False, many=True)  
     class Meta:
         model = Credit
-        fields = ("model", "complectation", "first_payment", "duration", "calculators")
+        fields = ("model", "complectation", "first_payment", "duration", "calculator")

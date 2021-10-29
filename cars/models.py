@@ -30,7 +30,7 @@ class Credit(models.Model):
 
 
 class Calculator(models.Model):
-    credit = models.ForeignKey(Credit, on_delete=models.CASCADE, related_name="calculators")
+    credit = models.ForeignKey(Credit, on_delete=models.CASCADE, related_name="calculator")
     month = models.DateField()
     payment = models.PositiveIntegerField()
     percent = models.CharField(max_length=20)
