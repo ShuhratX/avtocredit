@@ -4,7 +4,6 @@ from .models import *
 
 
 admin.site.register(CarModel)
-admin.site.register(Complectation)
 admin.site.register(Car)
 admin.site.register(Credit)
 admin.site.register(Calculator)

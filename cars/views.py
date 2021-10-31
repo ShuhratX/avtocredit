@@ -12,17 +12,12 @@ class CarModelView(ListCreateAPIView):
     queryset = CarModel.objects.all()
 
 
-class ComplectationView(ListCreateAPIView):
-    serializer_class = ComplectationSerializer
-    queryset = Complectation.objects.all()
-
-
 class CarView(ListCreateAPIView):
     serializer_class = CarSerializer
     queryset = Car.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    search_fields = ['complectation']
-    filter_fields = ['color', 'price']
+    search_fields = ['complectation',]
+    filter_fields = ['color', 'price',]
 
 
 class CreditView(ListCreateAPIView):

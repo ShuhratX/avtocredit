@@ -9,16 +9,8 @@ class CarModelSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class ComplectationSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Complectation
-        fields = "__all__"
-
-
 class CarSerializer(serializers.ModelSerializer):
     model = CarModelSerializer(required=False, many=False)
-    complectation = ComplectationSerializer(required=False, many=False)    
     class Meta:
         model = Car
         fields = "__all__"
@@ -33,7 +25,6 @@ class CalculatorSerializer(serializers.ModelSerializer):
 
 class CreditSerializer(serializers.ModelSerializer):
     model = CarModelSerializer(required=False, many=False)
-    complectation = ComplectationSerializer(required=False, many=False)
     calculator = CalculatorSerializer(required=False, many=True)  
     class Meta:
         model = Credit

@@ -5,13 +5,9 @@ class CarModel(models.Model):
     name = models.CharField(max_length=100)
 
 
-class Complectation(models.Model):
-    name = models.CharField(max_length=100)
-
-
 class Car(models.Model):
     model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
-    complectation = models.ForeignKey(Complectation, on_delete=models.CASCADE)
+    complectation = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
     price = models.PositiveIntegerField()
     color = models.CharField(max_length=50)
@@ -20,10 +16,12 @@ class Car(models.Model):
     transmission = models.CharField(max_length=50)
     top_speed = models.PositiveIntegerField()
 
+    def __str__(self):
+        return self.complectation
 
 class Credit(models.Model):
     model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
-    complectation = models.ForeignKey(Complectation, on_delete=models.CASCADE)
+    complectation = models.ForeignKey(Car, on_delete=models.CASCADE)
     duration = models.CharField(max_length=50)
     first_payment = models.CharField(max_length=50)
 
