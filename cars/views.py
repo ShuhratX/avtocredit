@@ -45,7 +45,7 @@ class ComparisonView(GenericAPIView):
                 car = Car.objects.filter(complectation=comp)
                 if car:
                     cars.append({
-                        "model": car.model.name,
+                        "model": car.model,
                         "complectation": car.complectation,
                         "price": car.price,
                         "color": car.color,
