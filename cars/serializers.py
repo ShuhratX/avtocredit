@@ -29,3 +29,8 @@ class CreditSerializer(serializers.ModelSerializer):
     class Meta:
         model = Credit
         fields = ("model", "complectation", "first_payment", "duration", "calculator")
+
+
+class CompareSerializer(serializers.Serializer):
+    car1 = serializers.CharField(max_length=100)
+    car2 = serializers.CharField(max_length=100)

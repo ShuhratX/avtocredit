@@ -32,7 +32,7 @@ class CalculatorView(ListCreateAPIView):
 
 
 class ComparisonView(GenericAPIView):
-    serializer_class = CarSerializer
+    serializer_class = CompareSerializer
     queryset = Car.objects.all()
 
     def post(self, request):
@@ -43,16 +43,19 @@ class ComparisonView(GenericAPIView):
             comps = [car1, car2]
             for comp in comps:
                 car = Car.objects.filter(complectation=comp)
-                cars.append({
-                    "model": car.model.name,
-                    "complectation": car.complectation,
-                    "price": car.price,
-                    "color": car.color,
-                    "power": car.power,
-                    "fuel_type": car.fuel_type,
-                    "transmission": car.transmission,
-                    "top_speed": car.top_speed,
-                })
+                if car:
+                    cars.append({
+                        "model": car.model.name,
+                        "complectation": car.complectation,
+                        "price": car.price,
+                        "color": car.color,
+                        "power": car.power,
+                        "fuel_type": car.fuel_type,
+                        "transmission": car.transmission,
+                        "top_speed": car.top_speed,
+                    })
+                else:
+                    cars = ["Mavjud bo'lmagan avto"]
             return Response(cars)
         else:
             return Response("Ikkita mashina tanlang!")
