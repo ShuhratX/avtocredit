@@ -8,7 +8,6 @@ class CarModel(models.Model):
 class Car(models.Model):
     model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
     complectation = models.CharField(max_length=50)
-    name = models.CharField(max_length=100)
     price = models.PositiveIntegerField()
     color = models.CharField(max_length=50)
     power = models.CharField(max_length=50)

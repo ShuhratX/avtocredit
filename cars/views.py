@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import serializers
 from rest_framework.generics import *
+from rest_framework.response import Response
 from .serializers import *
 import django_filters
 from rest_framework import filters
@@ -32,3 +33,26 @@ class CalculatorView(ListCreateAPIView):
 
 class ComparisonView(GenericAPIView):
     serializer_class = CarSerializer
+    queryset = Car.objects.all()
+
+    def post(self, request):
+        car1 = request.data.get('car1')
+        car2 = request.data.get('car2')
+        cars = []
+        if car1 and car2:
+            comps = [car1, car2]
+            for comp in comps:
+                car = Car.objects.filter(complectation=comp)
+                cars.append({
+                    "model": car.model.name,
+                    "complectation": car.complectation,
+                    "price": car.price,
+                    "color": car.color,
+                    "power": car.power,
+                    "fuel_type": car.fuel_type,
+                    "transmission": car.transmission,
+                    "top_speed": car.top_speed,
+                })
+            return Response(cars)
+        else:
+            return Response("Ikkita mashina tanlang!")
