@@ -24,6 +24,8 @@ class Credit(models.Model):
     duration = models.CharField(max_length=50)
     first_payment = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.model.name
 
 
 class Calculator(models.Model):
