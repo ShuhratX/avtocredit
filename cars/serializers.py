@@ -32,5 +32,5 @@ class CreditSerializer(serializers.ModelSerializer):
 
 
 class CompareSerializer(serializers.Serializer):
-    car1 = serializers.CharField(max_length=100)
-    car2 = serializers.CharField(max_length=100)
+    complectation1 = serializers.CharField(max_length=100)
+    complectation2 = serializers.CharField(max_length=100)
