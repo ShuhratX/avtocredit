@@ -5,7 +5,12 @@ from rest_framework.response import Response
 from .serializers import *
 import django_filters
 from rest_framework import filters
+from django.db.models import Count
 # Create your views here.
+
+class TypeView(ListAPIView):
+    serializer_class = TypeSerializer
+    queryset = Credit.objects.all()
 
 
 class CarModelView(ListCreateAPIView):
@@ -42,11 +47,11 @@ class ComparisonView(GenericAPIView):
         if car1 and car2:
             comps = [car1, car2]
             for comp in comps:
-                for car in Car.objects.filter(complectation=comp):
+                for car in Car.objects.filter(title=comp):
                     if car:
                         cars.append({
                             "model": car.model.name,
-                            "complectation": car.complectation,
+                            "title": car.title,
                             "price": car.price,
                             "color": car.color,
                             "power": car.power,

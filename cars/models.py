@@ -1,13 +1,14 @@
 from django.db import models
+import datetime
 
 
 class CarModel(models.Model):
-    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
 
 
 class Car(models.Model):
-    model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
-    complectation = models.CharField(max_length=50)
+    model = models.ForeignKey(CarModel, on_delete=models.CASCADE, related_name="models")
+    title = models.CharField(max_length=50)
     price = models.PositiveIntegerField()
     color = models.CharField(max_length=50)
     power = models.CharField(max_length=50)
@@ -16,22 +17,26 @@ class Car(models.Model):
     top_speed = models.PositiveIntegerField()
 
     def __str__(self):
-        return self.complectation
+        return self.title
 
 class Credit(models.Model):
-    model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
-    complectation = models.ForeignKey(Car, on_delete=models.CASCADE)
-    duration = models.CharField(max_length=50)
-    first_payment = models.CharField(max_length=50)
+    CHOICE = (
+        ('credit', ('Credit')),
+        ('leasing', ('Leasing')),
+    )
+    model = models.ForeignKey(CarModel, on_delete=models.CASCADE, related_name="credit")
+    title = models.ForeignKey(Car, on_delete=models.CASCADE, related_name="credit")
+    month = models.PositiveIntegerField(default=12)
+    status = models.CharField(choices=CHOICE, max_length=50)
 
     def __str__(self):
-        return self.model.name
+        return self.model.title
 
 
 class Calculator(models.Model):
-    credit = models.ForeignKey(Credit, on_delete=models.CASCADE, related_name="calculator")
-    month = models.DateField()
-    payment = models.PositiveIntegerField()
+    credit = models.ForeignKey(Credit, on_delete=models.CASCADE, related_name="payments")
+    sum = models.PositiveIntegerField()
+    order = models.PositiveIntegerField(default=1)
     percent = models.CharField(max_length=20)
     total = models.PositiveIntegerField()
-    remains = models.PositiveIntegerField()
+    remain = models.PositiveIntegerField()
